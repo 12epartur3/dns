@@ -5,6 +5,9 @@
 5、万一解析器没有指向TLD服务器的记录，其将查询根服务器。这种情况通常在清除了DNS高速缓存后发生。
 6、TLD返回该域名的权威域名服务器地址，包含example.com域的域名的IP地址，DNS通过该地址查询到www.example.com的真实IP地址，并且保留在DNS解析器的缓存中。
 
+CNAME记录是一个别名记录，如www.example.com CNAME example.com，该记录表示www.example.com是example.com的ALIAS，也就是www.example.com->（指向）example.com，当example.com的ip改变时（资源迁移到另外一个主机），用户无需改变，仍然使用www.example.com。
+当对www.example.com进行DNS查询时，一般会返回CNAME记录和A记录，因为如果没有返回A记录，还需要对example.com进行一次查询，这属于DNS的一个优化。
+
 参考：
 https://www.cloudflare.com/zh-cn/learning/dns/dns-server-types/
 https://www.cloudflare.com/zh-cn/learning/dns/what-is-dns/
